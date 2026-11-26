@@ -99,7 +99,6 @@ def create_post(request):
     return render(request, 'blog/create.html', {'form': form})
 
 
-@login_required
 def edit_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     if post.author != request.user:
@@ -138,7 +137,6 @@ def add_comment(request, post_id):
     return redirect('blog:post_detail', post_id)
 
 
-@login_required
 def edit_comment(request, post_id, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id, post_id=post_id)
     if comment.author != request.user:
